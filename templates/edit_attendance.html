@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<h3 class="text-center mt-2">Edit Attendance</h3>
+<form method="POST" class="mt-3">
+    <div class="mb-2"><label>Employee</label>
+        <select name="employee_id" class="form-control">
+            {% for emp in employees %}
+            <option value="{{ emp.id }}" {% if record.employee_id == emp.id %}selected{% endif %}>{{ emp.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-2"><label>Date</label><input type="date" name="date" class="form-control" value="{{ record.date }}" required></div>
+    <div class="mb-3"><label>Status</label>
+        <select name="status" class="form-control">
+            {% for s in ['Present','Absent','Late'] %}
+            <option {% if record.status == s %}selected{% endif %}>{{ s }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <button type="submit" class="btn btn-success">Update</button>
+    <a href="{{ url_for('view_update_attendance') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

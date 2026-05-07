@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<h3 class="text-center mt-2">Edit Employee</h3>
+<form method="POST" class="mt-3">
+    <div class="mb-2"><label>Name</label><input type="text" name="name" class="form-control" value="{{ employee.name }}" required></div>
+    <div class="mb-2"><label>Age</label><input type="number" name="age" class="form-control" value="{{ employee.age }}" required></div>
+    <div class="mb-2"><label>Phone</label><input type="text" name="phone" class="form-control" value="{{ employee.phone }}" required></div>
+    <div class="mb-2"><label>Address</label><input type="text" name="address" class="form-control" value="{{ employee.address }}" required></div>
+    <div class="mb-2"><label>Role</label>
+        <select name="role" class="form-control">
+            {% for r in ['Doctor','Nurse','Admin','Technician'] %}
+            <option {% if employee.role == r %}selected{% endif %}>{{ r }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-2"><label>Department</label><input type="text" name="department" class="form-control" value="{{ employee.department }}" required></div>
+    <div class="mb-3"><label>Salary</label><input type="number" step="0.01" name="salary" class="form-control" value="{{ employee.salary }}" required></div>
+    <button type="submit" class="btn btn-success">Update</button>
+    <a href="{{ url_for('view_update_employee') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

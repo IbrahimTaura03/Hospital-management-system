@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<h3 class="text-center mt-2">Beds</h3>
+<table class="table table-striped">
+    <thead><tr><th>ID</th><th>Bed No.</th><th>Ward</th><th>Status</th><th>Patient ID</th><th>Actions</th></tr></thead>
+    <tbody>
+        {% for bed in beds %}
+        <tr>
+            <td>{{ bed.id }}</td><td>{{ bed.bed_number }}</td><td>{{ bed.ward }}</td>
+            <td><span class="badge {% if bed.status == 'Available' %}bg-success{% else %}bg-danger{% endif %}">{{ bed.status }}</span></td>
+            <td>{{ bed.patient_id or '-' }}</td>
+            <td>
+                <a href="/edit_bed/{{ bed.id }}" class="btn btn-warning btn-sm">Edit</a>
+                <a href="/delete_bed/{{ bed.id }}" class="btn btn-danger btn-sm" onclick="return confirm('Delete?')">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<h3 class="text-center mt-2">Billing Records</h3>
+<table class="table table-striped">
+    <thead><tr><th>ID</th><th>Patient ID</th><th>Description</th><th>Amount</th><th>Date</th><th>Status</th><th>Actions</th></tr></thead>
+    <tbody>
+        {% for bill in bills %}
+        <tr>
+            <td>{{ bill.id }}</td><td>{{ bill.patient_id }}</td><td>{{ bill.description }}</td>
+            <td>${{ bill.amount }}</td><td>{{ bill.date }}</td>
+            <td><span class="badge {% if bill.status == 'Paid' %}bg-success{% else %}bg-danger{% endif %}">{{ bill.status }}</span></td>
+            <td>
+                <a href="/edit_billing/{{ bill.id }}" class="btn btn-warning btn-sm">Edit</a>
+                <a href="/delete_billing/{{ bill.id }}" class="btn btn-danger btn-sm" onclick="return confirm('Delete?')">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

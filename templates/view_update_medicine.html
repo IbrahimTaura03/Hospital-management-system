@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<h3 class="text-center mt-2">Medicines</h3>
+<table class="table table-striped">
+    <thead><tr><th>ID</th><th>Name</th><th>Quantity</th><th>Price</th><th>Expiry</th><th>Supplier</th><th>Actions</th></tr></thead>
+    <tbody>
+        {% for med in medicines %}
+        <tr>
+            <td>{{ med.id }}</td><td>{{ med.name }}</td><td>{{ med.quantity }}</td>
+            <td>{{ med.price }}</td><td>{{ med.expiry_date }}</td><td>{{ med.supplier }}</td>
+            <td>
+                <a href="/edit_medicine/{{ med.id }}" class="btn btn-warning btn-sm">Edit</a>
+                <a href="/delete_medicine/{{ med.id }}" class="btn btn-danger btn-sm"
+                   onclick="return confirm('Delete?')">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

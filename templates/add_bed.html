@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container-fluid mt-2 p-3 bg-secondary-subtle"><h1 class="text-center">Add Bed</h1></div>
+<form method="POST" class="mt-3">
+    <div class="mb-2"><label>Bed Number</label><input type="text" name="bed_number" class="form-control" required></div>
+    <div class="mb-2"><label>Ward</label><input type="text" name="ward" class="form-control" required></div>
+    <div class="mb-2"><label>Status</label>
+        <select name="status" class="form-control">
+            <option>Available</option><option>Occupied</option>
+        </select>
+    </div>
+    <div class="mb-3"><label>Assigned Patient (optional)</label>
+        <select name="patient_id" class="form-control">
+            <option value="">-- None --</option>
+            {% for p in patients %}
+            <option value="{{ p.id }}">{{ p.name }} (ID: {{ p.id }})</option>
+            {% endfor %}
+        </select>
+    </div>
+    <button type="submit" class="btn btn-success">Save</button>
+</form>
+{% endblock %}

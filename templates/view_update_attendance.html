@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<h3 class="text-center mt-2">Attendance Records</h3>
+<table class="table table-striped">
+    <thead><tr><th>ID</th><th>Employee</th><th>Date</th><th>Status</th><th>Actions</th></tr></thead>
+    <tbody>
+        {% for rec in records %}
+        <tr>
+            <td>{{ rec.id }}</td>
+            <td>{% for emp in employees %}{% if emp.id == rec.employee_id %}{{ emp.name }}{% endif %}{% endfor %}</td>
+            <td>{{ rec.date }}</td>
+            <td><span class="badge {% if rec.status == 'Present' %}bg-success{% elif rec.status == 'Late' %}bg-warning{% else %}bg-danger{% endif %}">{{ rec.status }}</span></td>
+            <td>
+                <a href="/edit_attendance/{{ rec.id }}" class="btn btn-warning btn-sm">Edit</a>
+                <a href="/delete_attendance/{{ rec.id }}" class="btn btn-danger btn-sm" onclick="return confirm('Delete?')">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

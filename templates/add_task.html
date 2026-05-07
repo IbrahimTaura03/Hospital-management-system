@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container-fluid mt-2 p-3 bg-secondary-subtle"><h1 class="text-center">Add Task</h1></div>
+<form method="POST" class="mt-3">
+    <div class="mb-2"><label>Title</label><input type="text" name="title" class="form-control" required></div>
+    <div class="mb-2"><label>Description</label><textarea name="description" class="form-control" rows="3"></textarea></div>
+    <div class="mb-2"><label>Assign To</label>
+        <select name="assigned_to" class="form-control" required>
+            {% for emp in employees %}
+            <option value="{{ emp.id }}">{{ emp.name }} - {{ emp.role }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-2"><label>Due Date</label><input type="date" name="due_date" class="form-control" required></div>
+    <div class="mb-3"><label>Status</label>
+        <select name="status" class="form-control">
+            <option>Pending</option><option>In Progress</option><option>Done</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-success">Save</button>
+</form>
+{% endblock %}

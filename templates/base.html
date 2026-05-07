@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Management System</title>
+</head>
+<body class="bg-primary">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+<div class="container-fluid mt-2 p-3 bg-secondary-subtle text-dark">
+    <h1 class="text-center">Hospital Management System</h1>
+</div>
+
+<div class="container-fluid mt-2 p-3 bg-info-subtle text-dark">
+    <div class="btn-group flex-wrap gap-1">
+
+        <!-- Patient -->
+        <button class="btn btn-success">Patient</button>
+        <button class="btn btn-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{{ url_for('patient.add_patient') }}">Add Patient</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('patient.view_update_patient') }}">View Patients</a></li>
+        </ul>
+
+        <!-- Employee -->
+        <button class="btn btn-success">Employee</button>
+        <button class="btn btn-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{{ url_for('add_employee') }}">Add Employee</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('view_update_employee') }}">View Employees</a></li>
+        </ul>
+
+        <!-- Medicine -->
+        <button class="btn btn-success">Medicine</button>
+        <button class="btn btn-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{{ url_for('add_medicine') }}">Add Medicine</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('view_update_medicine') }}">View Medicines</a></li>
+        </ul>
+
+        <!-- Bed -->
+        <button class="btn btn-success">Bed</button>
+        <button class="btn btn-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{{ url_for('add_bed') }}">Add Bed</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('view_update_bed') }}">View Beds</a></li>
+        </ul>
+
+        <!-- Attendance -->
+        <button class="btn btn-success">Attendance</button>
+        <button class="btn btn-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{{ url_for('add_attendance') }}">Add Attendance</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('view_update_attendance') }}">View Attendance</a></li>
+        </ul>
+
+        <!-- Task -->
+        <button class="btn btn-success">Task</button>
+        <button class="btn btn-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{{ url_for('add_task') }}">Add Task</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('view_update_task') }}">View Tasks</a></li>
+        </ul>
+
+        <!-- Billing -->
+        <button class="btn btn-success">Billing</button>
+        <button class="btn btn-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{{ url_for('add_billing') }}">Add Bill</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('view_update_billing') }}">View Bills</a></li>
+        </ul>
+
+    </div>
+</div>
+
+<div class="container mt-3">
+    {% block content %}{% endblock %}
+</div>
+</body>
+</html>
