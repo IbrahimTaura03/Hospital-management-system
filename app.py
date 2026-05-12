@@ -2,7 +2,6 @@ from flask import Flask, render_template, request, redirect, url_for
 from models import db
 from models.models_employee import Employee
 from models.models_medicine import Medicine
-from models.models_bed import Bed
 from models.models_attendance import Attendance
 from models.models_task import Task
 from models.models_billing import Billing
@@ -10,7 +9,6 @@ from models.models_billing import Billing
 from services.services_patient import  get_all_patients
 from services.services_employee import add_employee_service, get_all_employees, get_employee_by_id, update_employee_service
 from services.services_medicine import add_medicine_service, get_all_medicines, get_medicine_by_id, update_medicine_service, delete_medicine_service
-from services.services_bed import add_bed_service, get_all_beds, get_bed_by_id, update_bed_service, delete_bed_service
 from services.services_attendance import add_attendance_service, get_all_attendance, get_attendance_by_id, update_attendance_service, delete_attendance_service
 from services.services_task import add_task_service, get_all_tasks, get_task_by_id, update_task_service, delete_task_service
 from services.services_billing import add_billing_service, get_all_billings, get_billing_by_id, update_billing_service, delete_billing_service
@@ -83,33 +81,6 @@ def delete_medicine(id):
     delete_medicine_service(id)
     return redirect(url_for('view_update_medicine'))
 
-# ─── BED ───────────────────────────────────────────────
-@app.route('/add_bed', methods=['GET', 'POST'])
-def add_bed():
-    if request.method == 'POST':
-        add_bed_service(request.form)
-        return redirect(url_for('view_update_bed'))
-    patients = get_all_patients()
-    return render_template("add_bed.html", patients=patients)
-
-@app.route('/view_update_bed')
-def view_update_bed():
-    beds = get_all_beds()
-    return render_template('view_update_bed.html', beds=beds)
-
-@app.route('/edit_bed/<int:id>', methods=['GET', 'POST'])
-def edit_bed(id):
-    bed = get_bed_by_id(id)
-    if request.method == 'POST':
-        update_bed_service(id, request.form)
-        return redirect(url_for('view_update_bed'))
-    patients = get_all_patients()
-    return render_template('edit_bed.html', bed=bed, patients=patients)
-
-@app.route('/delete_bed/<int:id>')
-def delete_bed(id):
-    delete_bed_service(id)
-    return redirect(url_for('view_update_bed'))
 
 # ─── ATTENDANCE ────────────────────────────────────────
 @app.route('/add_attendance', methods=['GET', 'POST'])
