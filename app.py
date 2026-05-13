@@ -1,8 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
 from models import db
-
-
-from models.models_bed import Bed
 from models.models_employee import Employee
 from models.models_medicine import Medicine
 from models.models_attendance import Attendance
@@ -36,7 +33,53 @@ def base():
 
 
 
+# ─── EMPLOYEE ──────────────────────────────────────────
+@app.route('/add_employee', methods=['GET', 'POST'])
+def add_employee():
+    if request.method == 'POST':
+        add_employee_service(request.form)
+        return redirect(url_for('view_update_employee'))
+    return render_template("add_employee.html")
 
+@app.route('/view_update_employee')
+def view_update_employee():
+    employees = get_all_employees()
+    return render_template('view_update_employee.html', employees=employees)
+
+@app.route('/edit_employee/<int:id>', methods=['GET', 'POST'])
+def edit_employee(id):
+    employee = get_employee_by_id(id)
+    if request.method == 'POST':
+        update_employee_service(id, request.form)
+        return redirect(url_for('view_update_employee'))
+    return render_template('edit_employee.html', employee=employee)
+
+
+# ─── MEDICINE ──────────────────────────────────────────
+@app.route('/add_medicine', methods=['GET', 'POST'])
+def add_medicine():
+    if request.method == 'POST':
+        add_medicine_service(request.form)
+        return redirect(url_for('view_update_medicine'))
+    return render_template("add_medicine.html")
+
+@app.route('/view_update_medicine')
+def view_update_medicine():
+    medicines = get_all_medicines()
+    return render_template('view_update_medicine.html', medicines=medicines)
+
+@app.route('/edit_medicine/<int:id>', methods=['GET', 'POST'])
+def edit_medicine(id):
+    medicine = get_medicine_by_id(id)
+    if request.method == 'POST':
+        update_medicine_service(id, request.form)
+        return redirect(url_for('view_update_medicine'))
+    return render_template('edit_medicine.html', medicine=medicine)
+
+@app.route('/delete_medicine/<int:id>')
+def delete_medicine(id):
+    delete_medicine_service(id)
+    return redirect(url_for('view_update_medicine'))
 
 
 # ─── ATTENDANCE ────────────────────────────────────────
