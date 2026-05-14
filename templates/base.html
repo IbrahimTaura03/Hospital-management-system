@@ -52,16 +52,16 @@
         <button class="btn btn-success">Attendance</button>
         <button class="btn btn-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
         <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{{ url_for('add_attendance') }}">Add Attendance</a></li>
-            <li><a class="dropdown-item" href="{{ url_for('view_update_attendance') }}">View Attendance</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('attendance.add_attendance') }}">Add Attendance</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('attendance.view_update_attendance') }}">View Attendance</a></li>
         </ul>
 
         <!-- Task -->
         <button class="btn btn-success">Task</button>
         <button class="btn btn-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
         <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{{ url_for('add_task') }}">Add Task</a></li>
-            <li><a class="dropdown-item" href="{{ url_for('view_update_task') }}">View Tasks</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('task.add_task') }}">Add Task</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('task.view_update_task') }}">View Tasks</a></li>
         </ul>
 
         <!-- Billing -->
